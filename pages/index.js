@@ -2,8 +2,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 var _ = require("lodash") // Use for throttling resize handler
 
-import dividerDesktop from '../public/static/images/pattern-divider-desktop.svg'
-import dividerMobile from '../public/static/images/pattern-divider-mobile.svg'
 import iconDice from '../public/static/images/icon-dice.svg'
 
 export default function Home() {
@@ -24,9 +22,7 @@ export default function Home() {
           <p className="advice-card__advice">
             &ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, quo!&rdquo;
           </p>
-          <div className="advice-card__deco-element">
-            <Image src={dividerDesktop} alt="" />
-          </div>
+          <div className="advice-card__deco-element"></div>
           <div className="advice-card__reroll-button">
             <Image 
               src={iconDice} 

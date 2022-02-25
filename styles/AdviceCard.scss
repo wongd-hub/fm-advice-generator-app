@@ -1,4 +1,6 @@
-$card-length: 500px;
+$desktop: 1440px;
+$mobile: 375px;
+$card-length: 550px;
 $dice-length: 50px;
 
 .advice-card {
@@ -7,7 +9,7 @@ $dice-length: 50px;
     border-radius: 20px;
     width: $card-length;
     height: fit-content;
-    padding: 1rem;
+    padding: 1.2rem;
 
     &__title {
         color: var(--neon-green);
@@ -19,14 +21,19 @@ $dice-length: 50px;
     }
 
     &__advice {
+        font-size: calc(18rem / 16);
         color: var(--light-cyan);
         font-weight: 800;
         text-align: center;
     }
 
     &__deco-element {
-        width: fit-content;
+        width: 100%;
+        height: 20px;
         margin: .8rem auto;
+        background-image: url('../public/static/images/pattern-divider-desktop.svg');
+        background-position: center center;
+        background-repeat: no-repeat;
     }
 
     &__reroll-button {
@@ -50,4 +57,29 @@ $dice-length: 50px;
         }
     }
 
+}
+
+@media only screen and (max-width: 600px) {
+    .advice-card{
+        width: 91.7%;
+    }
+}
+
+
+@media only screen and (max-width: $mobile) {
+    .advice-card{
+        
+        &__title {
+            font-size: calc(7rem / 16);
+        }
+
+        &__advice {
+            font-size: calc(14rem / 16);
+        }
+
+        &__deco-element {
+            background-image: url('../public/static/images/pattern-divider-mobile.svg');
+        }
+
+    }
 }
