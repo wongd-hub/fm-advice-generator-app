@@ -16,7 +16,7 @@ This is a solution to the [Advice generator app challenge on Frontend Mentor](ht
 ## Overview
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./screenshot.png)
 
 ### Links
 
