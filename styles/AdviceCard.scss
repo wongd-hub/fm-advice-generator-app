@@ -1,0 +1,36 @@
+$card-length: 500px;
+$dice-length: 50px;
+
+.advice-card {
+    position: relative;
+    background-color: var(--grayish-blue);
+    border-radius: 20px;
+    margin: auto 0;
+    width: $card-length;
+    padding: 1rem;
+
+    &__title {
+        color: var(--neon-green);
+    }
+
+
+    &__reroll-button {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        width: $dice-length;
+        height: $dice-length;
+        top: calc(100% - $dice-length / 2);
+        left: calc((50% - $dice-length / 2));
+        background-color: var(--neon-green);
+        border-radius: 100%;
+        cursor: pointer;
+        transition: box-shadow 0.3s ease-in-out;
+
+        &:hover {
+            box-shadow: 0 0 20px 3px var(--neon-green);
+        }
+    }
+
+}
