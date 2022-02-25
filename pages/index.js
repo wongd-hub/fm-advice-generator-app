@@ -22,7 +22,7 @@ export default function Home() {
             Advice #
           </h2>
           <p className="advice-card__advice">
-            &ldquo;placeholder text&rdquo;
+            &ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, quo!&rdquo;
           </p>
           <div className="advice-card__deco-element">
             <Image src={dividerDesktop} alt="" />
@@ -30,13 +30,13 @@ export default function Home() {
           <div className="advice-card__reroll-button">
             <Image 
               src={iconDice} 
+              width={20}
+              height={20}
+              layout="fixed"
               alt="Image of dice for reroll" 
-              width={22}
-              height={22}
             />
           </div>
         </div>
-
       </main>
 
       <footer className='footer'>

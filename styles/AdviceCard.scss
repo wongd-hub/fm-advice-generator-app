@@ -3,26 +3,43 @@ $dice-length: 50px;
 
 .advice-card {
     position: relative;
-    background-color: var(--grayish-blue);
+    background-color: var(--dark-grayish-blue);
     border-radius: 20px;
-    margin: auto 0;
     width: $card-length;
+    height: fit-content;
     padding: 1rem;
 
     &__title {
         color: var(--neon-green);
+        font-size: calc(7.5rem / 16);
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 800;
+        letter-spacing: 0.2rem;
     }
 
+    &__advice {
+        color: var(--light-cyan);
+        font-weight: 800;
+        text-align: center;
+    }
+
+    &__deco-element {
+        width: fit-content;
+        margin: .8rem auto;
+    }
 
     &__reroll-button {
         position: absolute;
         display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
         margin: 0 auto;
         width: $dice-length;
         height: $dice-length;
         top: calc(100% - $dice-length / 2);
-        left: calc((50% - $dice-length / 2));
+        left: calc(50% - $dice-length / 2);
         background-color: var(--neon-green);
         border-radius: 100%;
         cursor: pointer;
