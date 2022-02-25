@@ -1,10 +1,41 @@
+
 import Head from 'next/head'
 import Image from 'next/image'
-var _ = require("lodash") // Use for throttling resize handler
+import React, { useState, useLayoutEffect } from 'react'
 
 import iconDice from '../public/static/images/icon-dice.svg'
 
 export default function Home() {
+  const [advice, setAdvice] = useState({
+    adviceId: undefined,
+    adviceText: undefined
+  })
+
+  async function fetcher() {
+    let adviceSlip = await fetch('https://api.adviceslip.com/advice')
+    let advice = await adviceSlip.json()
+    console.log(advice.slip)
+    setAdvice({
+      adviceId: advice.slip.id,
+      adviceText: advice.slip.advice
+    })
+  }
+
+  // useLayoutEffect to query advice before card is painted to screen
+  useLayoutEffect(() => {
+    async function initialFetcher() {
+      let adviceSlip = await fetch('https://api.adviceslip.com/advice')
+      let advice = await adviceSlip.json()
+      console.log(advice.slip)
+      setAdvice({
+        adviceId: advice.slip.id,
+        adviceText: advice.slip.advice
+      })
+    }
+    initialFetcher()
+  }, [])
+
+
   return (
     <div className='global-container'>
       <Head>
@@ -17,13 +48,16 @@ export default function Home() {
       <main className='page-container'>
         <div className="advice-card">
           <h2 className="advice-card__title">
-            Advice #
+            Advice #{advice.adviceId}
           </h2>
           <p className="advice-card__advice">
-            &ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, quo!&rdquo;
+            &ldquo;{advice.adviceText}&rdquo;
           </p>
           <div className="advice-card__deco-element"></div>
-          <div className="advice-card__reroll-button">
+          <button 
+            className="advice-card__reroll-button"
+            onClick={fetcher}
+          >
             <Image 
               src={iconDice} 
               width={20}
@@ -31,7 +65,7 @@ export default function Home() {
               layout="fixed"
               alt="Image of dice for reroll" 
             />
-          </div>
+          </button>
         </div>
       </main>
 
