@@ -10,6 +10,8 @@ $dice-length: 50px;
     width: $card-length;
     height: fit-content;
     padding: 1.2rem;
+    opacity: 0;
+    filter: drop-shadow(5px 5px 100px hsl(0, 0, 0));
 
     &__title {
         color: var(--neon-green);

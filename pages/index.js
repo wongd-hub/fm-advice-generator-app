@@ -2,19 +2,25 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import React, { useState, useLayoutEffect } from 'react'
+import { motion } from 'framer-motion'
 
 import iconDice from '../public/static/images/icon-dice.svg'
+
+const loadingVariants = {
+  loading: { opacity: 0, y: 20 },
+  notLoading: { opacity: 1, y: 0 }
+}
 
 export default function Home() {
   const [advice, setAdvice] = useState({
     adviceId: undefined,
     adviceText: undefined
   })
+  const [loading, setLoading] = useState(true)
 
   async function fetcher() {
     let adviceSlip = await fetch('https://api.adviceslip.com/advice')
     let advice = await adviceSlip.json()
-    console.log(advice.slip)
     setAdvice({
       adviceId: advice.slip.id,
       adviceText: advice.slip.advice
@@ -26,11 +32,11 @@ export default function Home() {
     async function initialFetcher() {
       let adviceSlip = await fetch('https://api.adviceslip.com/advice')
       let advice = await adviceSlip.json()
-      console.log(advice.slip)
       setAdvice({
         adviceId: advice.slip.id,
         adviceText: advice.slip.advice
       })
+      setLoading(false)
     }
     initialFetcher()
   }, [])
@@ -46,7 +52,11 @@ export default function Home() {
       </Head>
 
       <main className='page-container'>
-        <div className="advice-card">
+        <motion.div 
+          className="advice-card"
+          variants={loadingVariants}
+          animate={loading ? "loading" : "notLoading"}
+        >
           <h2 className="advice-card__title">
             Advice #{advice.adviceId}
           </h2>
@@ -66,7 +76,7 @@ export default function Home() {
               alt="Image of dice for reroll" 
             />
           </button>
-        </div>
+        </motion.div>
       </main>
 
       <footer className='footer'>
