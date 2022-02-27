@@ -1,7 +1,7 @@
 
 import Head from 'next/head'
 import Image from 'next/image'
-import React, { useState, useLayoutEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 import iconDice from '../public/static/images/icon-dice.svg'
@@ -33,8 +33,7 @@ export default function Home() {
     })
   }
 
-  // useLayoutEffect to query advice before card is painted to screen
-  useLayoutEffect(() => {
+  useEffect(() => {
     async function initialFetcher() {
       let adviceSlip = await fetch('https://api.adviceslip.com/advice')
       let advice = await adviceSlip.json()
@@ -63,9 +62,9 @@ export default function Home() {
           variants={loadingVariants}
           animate={loading ? "loading" : "notLoading"}
         >
-          <h2 className="advice-card__title">
+          <h1 className="advice-card__title">
             Advice #{advice.adviceId}
-          </h2>
+          </h1>
           <p className="advice-card__advice">
             &ldquo;{advice.adviceText}&rdquo;
           </p>
@@ -93,6 +92,7 @@ export default function Home() {
             href="https://redcross.org.ua/en/donate/"
             target="_blank"
             rel="noreferrer"
+            aria-label='Go to the Red Cross website to donate to Ukraine'
           >
             <Image 
               src={flag}
